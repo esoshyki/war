@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Cloud, OrbitControls } from "@react-three/drei";
+import * as THREE from 'three'
+import { BufferGeometry } from "three";
 
 const Background = () => {
 
@@ -29,6 +31,37 @@ const Background = () => {
         )
     }
 
+    const Rain = () => {
+        const vertices = [];
+
+        const geoRef = React.useRef<BufferGeometry>()
+
+     
+
+        for (let i = 0; i < 6000; i ++) {
+            const x = Math.random() * 400 - 200;
+            const y = Math.random() * 500 - 250;
+            const z = Math.random() * 400 - 200;
+            vertices.push(x, y, z);
+        }
+
+
+       return (
+            <mesh>
+                <bufferGeometry ref={geoRef}>
+                    <bufferAttribute 
+                        attachObject={["attributes", "position"]}
+                        array={vertices}
+                        itemSize={3}
+                    />
+                </bufferGeometry>
+                <pointsMaterial color={0xaaaaaa} size={0.1} transparent={true} />
+            </mesh>
+        )
+
+        
+    }
+
 
     return (
         <div className="layout__background">
@@ -40,6 +73,7 @@ const Background = () => {
             >
                 <React.Suspense fallback={null}>
                     <Cloudes />
+                    <Rain />
                 </React.Suspense>
                 <OrbitControls 
                     enablePan={true} 

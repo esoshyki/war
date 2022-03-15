@@ -1,14 +1,12 @@
-import * as React from "react"
-import Layout from "../components/Layout"
+import * as React from "react";
+import Intro from "../components/Intro";
+import Layout from "../components/Layout";
 
 // markup
 const IndexPage = () => {
-  return (
-    <Layout>
-      <h1>Third war war</h1>
-      <h3>February, 24. 2022</h3>
-    </Layout>
-  )
-}
+    return <Layout>
+        <Intro />
+    </Layout>;
+};
 
-export default IndexPage
+export default IndexPage;
